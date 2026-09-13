@@ -33,7 +33,7 @@ cv:
     experience:
       - company: Siemens SMO
         position: Lead DevOps / Platform Engineer
-        location: Aveiro
+        location: Aveiro, Portugal
         start_date: 2023-08
         end_date: present
         highlights:
@@ -45,7 +45,7 @@ cv:
           - "**Stack:** AWS, Terraform, Terragrunt, Airflow, Ansible, Atlantis, Grafana Cloud, K8s (EKS), ArgoCD"
       - company: Talkdesk
         position: Site Reliability Engineer
-        location: Porto
+        location: Porto, Portugal
         start_date: 2021-11
         end_date: 2023-08
         highlights:
@@ -55,7 +55,7 @@ cv:
           - "**Stack:** AWS, Terraform, Vault, Consul, Ansible, Atlantis, Prometheus, Grafana, K8s"
       - company: Byside
         position: Senior System Administrator
-        location: Porto
+        location: Porto, Portugal
         start_date: 2020-11
         end_date: 2021-11
         highlights:
@@ -66,7 +66,7 @@ cv:
           - "**Stack:** Ansible, RHEV/Ovirt, Rundeck, AWX, Vmware(IaaS), GCP"
       - company: Vimaponto
         position: System Administration Specialist
-        location: Guimaraes
+        location: Guimaraes, Portugal
         start_date: 2018-06
         end_date: 2020-11
         highlights:
@@ -80,7 +80,7 @@ cv:
           - Developed IaC tools to automate everything possible
       - company: Cheaptrade
         position: Solution / Maintenance Technician
-        location: Felgueiras
+        location: Felgueiras, Portugal
         start_date: 2009-04
         end_date: 2018-06
         highlights:
@@ -94,7 +94,7 @@ cv:
           - Local web servers for small appliances
       - company: RMLTECH
         position: Self Employed
-        location: Amarante
+        location: Amarante, Portugal
         start_date: 2007-09
         end_date: 2009-04
         highlights:
@@ -104,7 +104,7 @@ cv:
           - ERP Solutions
       - company: Megatronica
         position: IT Technician
-        location: Braga
+        location: Braga, Portugal
         start_date: 2005-01
         end_date: 2006-12
         highlights:
@@ -219,4 +219,4 @@ settings:
     dont_generate_pdf: false
     dont_generate_png: false
   bold_keywords: []
-  pdf_title: Ricardo Leal - CV
+  pdf_title: Ricardo Leal - Curriculum Vitae
