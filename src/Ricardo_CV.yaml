@@ -201,6 +201,7 @@ design:
     space_between_columns: 0.1cm
     allow_page_break: true
     short_second_row: false
+    degree_width: 1.5cm
 locale:
   language: english
 settings:
