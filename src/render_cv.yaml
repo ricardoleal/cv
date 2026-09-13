@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
 cv:
-  name: Ricardo Leal
+  name: Your Name
   headline: Site Reliability Engineer
   location: Europe/Lisbon
   email: cv@ricardoleal.me
