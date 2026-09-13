@@ -415,6 +415,31 @@
       border-radius: 6px;
     }
     .md-close:hover { background: var(--border); }
+    .md-toggle {
+      position: absolute;
+      top: 12px;
+      right: 52px;
+      background: var(--border);
+      border: none;
+      font-size: 9pt;
+      cursor: pointer;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .md-toggle:hover { background: var(--accent); color: #fff; }
+    .md-raw {
+      display: none;
+      background: var(--border);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 9pt;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      color: var(--text-primary);
+    }
   </style>
 </head>
 <body>
@@ -676,9 +701,28 @@ function showMarkdown() {
   fetch('output/cv.md')
     .then(function(r) { return r.text(); })
     .then(function(md) {
+      window._rawMd = md;
       document.getElementById('md-body').innerHTML = marked.parse(md);
+      document.getElementById('md-raw').textContent = md;
+      document.getElementById('md-raw').style.display = 'none';
+      document.getElementById('md-body').style.display = 'block';
+      document.querySelector('.md-toggle').textContent = 'Raw';
       document.getElementById('md-modal').classList.add('active');
     });
+}
+function toggleRaw() {
+  var raw = document.getElementById('md-raw');
+  var body = document.getElementById('md-body');
+  var btn = document.querySelector('.md-toggle');
+  if (raw.style.display === 'none') {
+    raw.style.display = 'block';
+    body.style.display = 'none';
+    btn.textContent = 'Rendered';
+  } else {
+    raw.style.display = 'none';
+    body.style.display = 'block';
+    btn.textContent = 'Raw';
+  }
 }
 function closeMarkdown() {
   document.getElementById('md-modal').classList.remove('active');
@@ -690,8 +734,10 @@ function closeMarkdown() {
 
 <div id="md-modal" class="md-modal" onclick="if(event.target===this)closeMarkdown()">
   <div class="md-content">
+    <button class="md-toggle" onclick="toggleRaw()">Raw</button>
     <button class="md-close" onclick="closeMarkdown()">&times;</button>
     <div id="md-body"></div>
+    <pre id="md-raw" class="md-raw"></pre>
   </div>
 </div>
 
