@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name - CV</title>
+  <title>Ricardo Leal - CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -276,8 +276,10 @@
       align-items: center;
       gap: 8px;
       padding: 0 0 8px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
     }
-    .download-btn {
+    .download-btn, .github-btn {
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -293,11 +295,11 @@
       border: 1.5px solid var(--border);
       transition: border-color 0.15s, color 0.15s, background 0.15s;
     }
-    .download-btn:hover {
+    .download-btn:hover, .github-btn:hover {
       border-color: var(--accent);
       background: var(--accent-light);
     }
-    .download-btn svg { width: 12px; height: 12px; fill: currentColor; }
+    .download-btn svg, .github-btn svg { width: 12px; height: 12px; fill: currentColor; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -363,6 +365,10 @@
 
 <div class="page">
   <div class="download-bar">
+    <a class="github-btn" href="https://github.com/ricardoleal/cv" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      View on GitHub
+    </a>
     <a class="download-btn" href="cv.pdf" download>
       <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
       Download PDF
@@ -375,7 +381,7 @@
   </div>
 
   <div class="header">
-    <h1>Your Name</h1>
+    <h1>Ricardo Leal</h1>
     <div class="headline">Site Reliability Engineer</div>
     <div class="connections">
       <a href="mailto:cv@ricardoleal.me">
@@ -395,7 +401,7 @@
 
   <div class="section">
     <div class="section-title">Career Profile</div>
-    <p class="summary">Cloud Engineer with more than 10 years of experience. Strong background on System Administration, worked both in On-prem/Cloud infrastructures across internal and external clients. Currently working as Lead DevOps / Platform Engineer. Opensource advocate.</p>
+    <p class="summary">Cloud Engineer with more than 10 years of experience. Strong background on System Administration, worked both in On-prem/Cloud infrastructures across internal and external clients. Currently working as Lead DevOps / Platform Engineer. Open-source advocate.</p>
   </div>
 
   <div class="section">
@@ -435,7 +441,7 @@
         <div class="entry-main">
           <div class="entry-title"><span class="label">Siemens SMO</span>, <span class="detail">Lead DevOps / Platform Engineer</span></div>
         <ul class="highlights">
-          <li>Led the migration from Click-ops to Git-ops</li>
+          <li>Led the migration from Click-ops to Git-ops, reducing deployment time by 60%</li>
           <li>Developed and maintained infrastructure as code, keeping it DRY (Don't Repeat Yourself) as much as possible</li>
           <li>Migrating platforms for Machine Learning and Data transformation to Kubernetes</li>
           <li>Implementing Database as a Service (DBaaS) in Kubernetes</li>
@@ -453,7 +459,7 @@
         <div class="entry-main">
           <div class="entry-title"><span class="label">Talkdesk</span>, <span class="detail">Site Reliability Engineer</span></div>
         <ul class="highlights">
-          <li>Developing and maintaining IAC code/modules/providers to manage cloud infrastructure</li>
+          <li>Developing and maintaining IaC code/modules/providers to manage cloud infrastructure for 100+ microservices</li>
           <li>Focus on the observability stack, providing tools and mechanisms to other teams</li>
           <li>Led investigation of new implementations into AWS / MongodbAtlas / Grafana</li>
           <li><strong>Stack:</strong> AWS, Terraform, Vault, Consul, Ansible, Atlantis, Prometheus, Grafana, K8s</li>
@@ -469,8 +475,8 @@
         <div class="entry-main">
           <div class="entry-title"><span class="label">Byside</span>, <span class="detail">Senior System Administrator</span></div>
         <ul class="highlights">
-          <li>Infrastructure architect and team leader, managing 3 datacenters and 2 IaaS sites</li>
-          <li>Migration from Virtual Environment to IaaS and migrate micro services to containers</li>
+          <li>Infrastructure architect and team leader, managing 3 data centers and 2 IaaS sites</li>
+          <li>Migration from Virtual Environment to IaaS and migrate microservices to containers</li>
           <li>Led Automation for infrastructure deployment and its lifecycle</li>
           <li>Network administration (Core switch/Firewall/Ipsec)</li>
           <li><strong>Stack:</strong> Ansible, RHEV/Ovirt, Rundeck, AWX, Vmware(IaaS), GCP</li>
@@ -486,13 +492,13 @@
         <div class="entry-main">
           <div class="entry-title"><span class="label">Vimaponto</span>, <span class="detail">System Administration Specialist</span></div>
         <ul class="highlights">
-          <li>Lead Sysadmin on Windows and Linux platforms</li>
+          <li>Led Sysadmin on Windows and Linux platforms</li>
           <li>Cluster virtualization with VMware</li>
           <li>Windows Server with Active Directory</li>
           <li>Support for SQL servers</li>
           <li>Disaster recovery with Veeam/Storagecraft</li>
           <li>Responsible for deployment of network solutions, such as core network, firewall</li>
-          <li>Orchestration and scripting evangelist, working mostly with Powershell and bash</li>
+          <li>Orchestration and scripting evangelist, working mostly with PowerShell and bash</li>
           <li>Developed IaC tools to automate everything possible</li>
         </ul>
         </div>
@@ -527,7 +533,7 @@
           <div class="entry-title"><span class="label">RMLTECH</span>, <span class="detail">Self Employed</span></div>
         <ul class="highlights">
           <li>Help Desk</li>
-          <li>Small server solutions (Linux Based - Storage/PDC)</li>
+          <li>Small server solutions (Linux-based - Storage/PDC)</li>
           <li>Webhosting</li>
           <li>ERP Solutions</li>
         </ul>
