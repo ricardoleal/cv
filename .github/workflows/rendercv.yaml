@@ -1,4 +1,4 @@
-name: Render a CV
+name: Render and Deploy CV
 
 on:
   push:
@@ -8,6 +8,12 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   rendercv:
@@ -32,7 +38,6 @@ jobs:
       - name: Generate HTML
         run: |
           python3 build_html.py
-          cp index.html src/rendercv_output/index.html
           cp src/rendercv_output/*_CV.pdf .
       - name: Upload rendercv_output as an artifact
         uses: actions/upload-artifact@v4
@@ -55,3 +60,19 @@ jobs:
           git add -A
           git commit -m "render the latest CV"
           git push
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: rendercv
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
