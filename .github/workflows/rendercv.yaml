@@ -35,6 +35,7 @@ jobs:
         run: |
           rendercv render src/render_cv.yaml
           cp src/rendercv_output/*.pdf ./cv.pdf
+          cp src/rendercv_output/*.md ./cv.md
       - name: Generate HTML
         run: |
           python3 build_html.py
