@@ -202,66 +202,72 @@ def main():
   <title>{name} - CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
     :root {{
-      --blue: #004f90;
-      --blue-hover: #003d70;
-      --grey: #808080;
-      --text: #1a1a1a;
-      --text-secondary: #555;
-      --text-detail: #444;
-      --bg: #f5f5f5;
+      --accent: #004f90;
+      --accent-hover: #003d70;
+      --accent-light: #e8f0f8;
+      --text: #1c1c1c;
+      --text-secondary: #5a5a5a;
+      --text-muted: #777;
+      --bg: #f0eeeb;
       --page-bg: #ffffff;
-      --border: #cccccc;
-      --shadow: rgba(0,0,0,0.1);
-      --font: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      --border: #d8d4cf;
+      --border-light: #eae7e3;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'Source Sans 3', 'Inter', -apple-system, sans-serif;
     }}
 
     @media (prefers-color-scheme: dark) {{
       :root:not([data-theme="light"]) {{
-        --blue: #5ba3d9;
-        --blue-hover: #7dbde8;
-        --text: #e0e0e0;
-        --text-secondary: #aaaaaa;
-        --text-detail: #bbbbbb;
-        --bg: #121212;
-        --page-bg: #1e1e1e;
-        --border: #333333;
-        --shadow: rgba(0,0,0,0.4);
+        --accent: #6aabde;
+        --accent-hover: #8ec2ed;
+        --accent-light: #1a2a3a;
+        --text: #dcdcdc;
+        --text-secondary: #a0a0a0;
+        --text-muted: #777;
+        --bg: #0e0e0e;
+        --page-bg: #181818;
+        --border: #2e2e2e;
+        --border-light: #242424;
+        --shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
       }}
     }}
 
     [data-theme="dark"] {{
-      --blue: #5ba3d9;
-      --blue-hover: #7dbde8;
-      --text: #e0e0e0;
-      --text-secondary: #aaaaaa;
-      --text-detail: #bbbbbb;
-      --bg: #121212;
-      --page-bg: #1e1e1e;
-      --border: #333333;
-      --shadow: rgba(0,0,0,0.4);
+      --accent: #6aabde;
+      --accent-hover: #8ec2ed;
+      --accent-light: #1a2a3a;
+      --text: #dcdcdc;
+      --text-secondary: #a0a0a0;
+      --text-muted: #777;
+      --bg: #0e0e0e;
+      --page-bg: #181818;
+      --border: #2e2e2e;
+      --border-light: #242424;
+      --shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
     }}
 
     body {{
-      font-family: var(--font);
+      font-family: var(--font-body);
       color: var(--text);
       font-size: 10.5pt;
-      line-height: 1.5;
+      line-height: 1.55;
       background: var(--bg);
-      transition: background 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }}
 
     .page {{
       max-width: 800px;
       margin: 0 auto;
       background: var(--page-bg);
-      padding: 40px 50px;
-      box-shadow: 0 1px 4px var(--shadow);
-      transition: background 0.3s, box-shadow 0.3s;
+      padding: 48px 56px;
+      box-shadow: var(--shadow);
     }}
 
     @media print {{
@@ -271,166 +277,240 @@ def main():
       .theme-toggle {{ display: none !important; }}
     }}
 
-    /* Theme toggle */
+    /* Theme toggle - pill with icon swap */
     .theme-toggle {{
       position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 20px;
+      right: 20px;
       z-index: 100;
       background: var(--page-bg);
       border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      border-radius: 24px;
+      width: 56px;
+      height: 30px;
       cursor: pointer;
       display: flex;
       align-items: center;
+      padding: 0 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: background 0.2s, border-color 0.2s;
+    }}
+    .theme-toggle:hover {{
+      border-color: var(--accent);
+    }}
+    .theme-toggle svg {{
+      width: 14px;
+      height: 14px;
+      fill: var(--text-muted);
+      transition: fill 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }}
+    .theme-toggle:hover svg {{ fill: var(--accent); }}
+    .toggle-track {{
+      position: absolute;
+      left: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px var(--shadow);
-      transition: background 0.3s, border-color 0.3s;
     }}
-    .theme-toggle:hover {{ opacity: 0.8; }}
-    .theme-toggle svg {{ width: 20px; height: 20px; fill: var(--text); transition: fill 0.3s; }}
-    .theme-toggle .icon-moon {{ display: none; }}
-    [data-theme="dark"] .theme-toggle .icon-sun {{ display: none; }}
-    [data-theme="dark"] .theme-toggle .icon-moon {{ display: block; }}
+    .toggle-track svg {{ width: 12px; height: 12px; fill: #fff; }}
+    [data-theme="dark"] .toggle-track {{ transform: translateX(26px); }}
+    .theme-toggle .icon-sun {{ margin-left: 6px; }}
+    .theme-toggle .icon-moon {{ margin-right: 6px; margin-left: auto; }}
 
-    @media (max-width: 768px) {{
-      .page {{ padding: 24px 20px; }}
-      .download-bar {{ padding: 12px 20px; }}
-      .theme-toggle {{ top: 10px; right: 10px; width: 36px; height: 36px; }}
-      .theme-toggle svg {{ width: 18px; height: 18px; }}
-    }}
-
+    /* Header */
     .header {{
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-light);
     }}
     .header h1 {{
-      font-size: 28pt;
+      font-family: var(--font-heading);
+      font-size: 30pt;
       font-weight: 700;
-      color: var(--blue);
+      color: var(--accent);
       margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
     }}
     .header .headline {{
+      font-family: var(--font-body);
       font-size: 11pt;
-      color: var(--blue);
-      margin-top: 2px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
     }}
     .connections {{
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 14px;
-      font-size: 9.5pt;
-      color: var(--blue);
+      gap: 6px 18px;
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--text-secondary);
     }}
     .connections a {{
-      color: var(--blue);
+      color: var(--text-secondary);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
+      transition: color 0.15s;
     }}
-    .connections a:hover {{ text-decoration: underline; }}
-    .connections svg {{ width: 13px; height: 13px; fill: var(--blue); flex-shrink: 0; }}
+    .connections a:hover {{ color: var(--accent); }}
+    .connections svg {{ width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; opacity: 0.7; }}
 
-    .section {{ margin-top: 18px; }}
+    /* Sections */
+    .section {{ margin-top: 22px; }}
     .section-title {{
-      font-size: 13pt;
+      font-family: var(--font-heading);
+      font-size: 12pt;
       font-weight: 700;
-      text-transform: uppercase;
-      color: var(--blue);
-      border-bottom: 0.5pt solid var(--border);
-      padding-bottom: 3px;
+      color: var(--accent);
       margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: 0.2px;
     }}
 
+    /* Entries */
     .entry {{
       display: grid;
       grid-template-columns: 1fr 140px;
-      gap: 0 12px;
-      margin-bottom: 14px;
+      gap: 0 14px;
+      margin-bottom: 16px;
     }}
+    .entry:last-child {{ margin-bottom: 0; }}
     .entry-main {{ min-width: 0; }}
     .entry-meta {{
       text-align: right;
-      font-size: 9.5pt;
-      color: var(--text-secondary);
+      font-size: 9pt;
+      color: var(--text-muted);
       white-space: nowrap;
+      padding-top: 2px;
     }}
     .entry-meta .location {{ display: block; }}
-    .entry-meta .date {{ display: block; font-weight: 600; color: var(--text); }}
+    .entry-meta .date {{ display: block; font-weight: 600; color: var(--text-secondary); font-size: 9.5pt; }}
 
     .entry-title {{
+      font-family: var(--font-heading);
       font-size: 11pt;
       font-weight: 700;
+      line-height: 1.3;
     }}
     .entry-title .label {{ color: var(--text); }}
-    .entry-title .detail {{ font-weight: 400; color: var(--text-detail); }}
+    .entry-title .detail {{ font-weight: 400; color: var(--text-secondary); }}
 
     .entry-degree {{
-      font-size: 10pt;
-      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 9.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
       margin-top: 1px;
     }}
 
     .highlights {{
-      margin-top: 4px;
+      margin-top: 5px;
       padding-left: 16px;
     }}
     .highlights li {{
       margin-bottom: 3px;
       font-size: 10pt;
-      line-height: 1.45;
+      line-height: 1.5;
+      color: var(--text);
     }}
+    .highlights li::marker {{ color: var(--accent); }}
 
     .summary {{
       font-size: 10.5pt;
-      line-height: 1.5;
-      margin-bottom: 4px;
+      line-height: 1.6;
+      color: var(--text);
     }}
 
     .skill-row {{
       font-size: 10pt;
-      margin-bottom: 3px;
-      line-height: 1.45;
+      margin-bottom: 4px;
+      line-height: 1.5;
+      color: var(--text);
     }}
-    .skill-row strong {{ font-weight: 700; }}
+    .skill-row strong {{
+      font-weight: 600;
+      color: var(--text);
+    }}
 
     .interests-list {{
-      list-style: disc;
-      padding-left: 18px;
+      list-style: none;
+      padding-left: 0;
       font-size: 10pt;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
     }}
-    .interests-list li {{ margin-bottom: 2px; }}
+    .interests-list li {{
+      position: relative;
+      padding-left: 14px;
+    }}
+    .interests-list li::before {{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }}
 
+    /* Download bar */
     .download-bar {{
       text-align: right;
-      padding: 12px 50px;
+      padding: 16px 56px;
       max-width: 800px;
       margin: 0 auto;
     }}
     .download-btn {{
-      display: inline-block;
-      background: var(--blue);
-      color: #fff;
-      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      color: var(--accent);
+      padding: 7px 16px;
       text-decoration: none;
-      border-radius: 4px;
-      font-size: 10pt;
-      font-family: var(--font);
+      border-radius: 6px;
+      font-size: 9pt;
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
     }}
-    .download-btn:hover {{ background: var(--blue-hover); }}
+    .download-btn:hover {{
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }}
+    .download-btn svg {{ width: 12px; height: 12px; fill: currentColor; }}
 
-    /* Mobile responsive */
+    /* Responsive */
+    @media (max-width: 768px) {{
+      .page {{ padding: 32px 24px; }}
+      .download-bar {{ padding: 14px 24px; }}
+      .theme-toggle {{ top: 12px; right: 12px; width: 50px; height: 26px; }}
+      .toggle-track {{ width: 20px; height: 20px; }}
+      .toggle-track svg {{ width: 10px; height: 10px; }}
+      [data-theme="dark"] .toggle-track {{ transform: translateX(24px); }}
+    }}
+
     @media (max-width: 600px) {{
-      .header h1 {{ font-size: 22pt; }}
+      .header h1 {{ font-size: 24pt; }}
       .header .headline {{ font-size: 10pt; }}
-      .connections {{ gap: 10px; font-size: 9pt; }}
+      .connections {{ gap: 4px 14px; font-size: 8.5pt; }}
       .connections svg {{ width: 11px; height: 11px; }}
       .entry {{
         grid-template-columns: 1fr;
@@ -438,22 +518,39 @@ def main():
       }}
       .entry-meta {{
         text-align: left;
-        margin-top: 2px;
+        margin-top: 3px;
         white-space: normal;
       }}
-      .section-title {{ font-size: 12pt; }}
+      .section-title {{ font-size: 11pt; }}
+      .interests-list {{ flex-direction: column; gap: 4px; }}
+    }}
+
+    /* Focus visible for accessibility */
+    :focus-visible {{
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {{
+      *, *::before, *::after {{ transition: none !important; }}
     }}
   </style>
 </head>
 <body>
 
 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-  <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+  <span class="toggle-track">
+    <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+  </span>
   <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
 </button>
 
 <div class="download-bar">
-  <a class="download-btn" href="Ricardo_Leal_CV.pdf" download>Download PDF</a>
+  <a class="download-btn" href="Ricardo_Leal_CV.pdf" download>
+    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+    Download PDF
+  </a>
 </div>
 
 <div class="page">
