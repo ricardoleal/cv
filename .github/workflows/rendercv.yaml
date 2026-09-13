@@ -7,7 +7,7 @@ on:
   workflow_call:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -38,28 +38,6 @@ jobs:
       - name: Generate HTML
         run: |
           python3 build_html.py
-          cp src/rendercv_output/*_CV.pdf .
-      - name: Upload rendercv_output as an artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: RenderCV Output
-          path: src/rendercv_output
-      - uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          base: HEAD
-          filters: |
-            cv:
-              - 'src/*_CV.typ'
-              - 'index.html'
-      - name: Push the changes
-        if: steps.changes.outputs.cv == 'true'
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git add -A
-          git commit -m "render the latest CV"
-          git push
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
