@@ -1,5 +1,6 @@
 __pycache__/
 rendercv_output/
+output/
 *.typ
 .venv/
 .DS_Store

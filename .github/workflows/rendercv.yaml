@@ -33,9 +33,10 @@ jobs:
           pip install -r requirements.txt
       - name: RenderCV
         run: |
+          mkdir -p output
           rendercv render src/render_cv.yaml
-          cp src/rendercv_output/*.pdf ./cv.pdf
-          cp src/rendercv_output/*.md ./cv.md
+          cp src/rendercv_output/*.pdf ./output/cv.pdf
+          cp src/rendercv_output/*.md ./output/cv.md
       - name: Generate HTML
         run: |
           python3 build_html.py
