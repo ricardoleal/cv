@@ -195,7 +195,7 @@ def main():
   </div>"""
 
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -208,9 +208,42 @@ def main():
 
     :root {{
       --blue: #004f90;
+      --blue-hover: #003d70;
       --grey: #808080;
       --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-detail: #444;
+      --bg: #f5f5f5;
+      --page-bg: #ffffff;
+      --border: #cccccc;
+      --shadow: rgba(0,0,0,0.1);
       --font: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }}
+
+    @media (prefers-color-scheme: dark) {{
+      :root:not([data-theme="light"]) {{
+        --blue: #5ba3d9;
+        --blue-hover: #7dbde8;
+        --text: #e0e0e0;
+        --text-secondary: #aaaaaa;
+        --text-detail: #bbbbbb;
+        --bg: #121212;
+        --page-bg: #1e1e1e;
+        --border: #333333;
+        --shadow: rgba(0,0,0,0.4);
+      }}
+    }}
+
+    [data-theme="dark"] {{
+      --blue: #5ba3d9;
+      --blue-hover: #7dbde8;
+      --text: #e0e0e0;
+      --text-secondary: #aaaaaa;
+      --text-detail: #bbbbbb;
+      --bg: #121212;
+      --page-bg: #1e1e1e;
+      --border: #333333;
+      --shadow: rgba(0,0,0,0.4);
     }}
 
     body {{
@@ -218,25 +251,55 @@ def main():
       color: var(--text);
       font-size: 10.5pt;
       line-height: 1.5;
-      background: #f5f5f5;
+      background: var(--bg);
+      transition: background 0.3s, color 0.3s;
     }}
 
     .page {{
       max-width: 800px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--page-bg);
       padding: 40px 50px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px var(--shadow);
+      transition: background 0.3s, box-shadow 0.3s;
     }}
 
     @media print {{
-      body {{ background: #fff; }}
-      .page {{ box-shadow: none; padding: 0; max-width: none; }}
+      body {{ background: #fff; color: #1a1a1a; }}
+      .page {{ box-shadow: none; padding: 0; max-width: none; background: #fff; }}
       .download-bar {{ display: none !important; }}
+      .theme-toggle {{ display: none !important; }}
     }}
+
+    /* Theme toggle */
+    .theme-toggle {{
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--page-bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }}
+    .theme-toggle:hover {{ opacity: 0.8; }}
+    .theme-toggle svg {{ width: 20px; height: 20px; fill: var(--text); transition: fill 0.3s; }}
+    .theme-toggle .icon-moon {{ display: none; }}
+    [data-theme="dark"] .theme-toggle .icon-sun {{ display: none; }}
+    [data-theme="dark"] .theme-toggle .icon-moon {{ display: block; }}
 
     @media (max-width: 768px) {{
       .page {{ padding: 24px 20px; }}
+      .download-bar {{ padding: 12px 20px; }}
+      .theme-toggle {{ top: 10px; right: 10px; width: 36px; height: 36px; }}
+      .theme-toggle svg {{ width: 18px; height: 18px; }}
     }}
 
     .header {{
@@ -281,7 +344,7 @@ def main():
       font-weight: 700;
       text-transform: uppercase;
       color: var(--blue);
-      border-bottom: 0.5pt solid var(--blue);
+      border-bottom: 0.5pt solid var(--border);
       padding-bottom: 3px;
       margin-bottom: 10px;
     }}
@@ -296,18 +359,18 @@ def main():
     .entry-meta {{
       text-align: right;
       font-size: 9.5pt;
-      color: #555;
+      color: var(--text-secondary);
       white-space: nowrap;
     }}
     .entry-meta .location {{ display: block; }}
-    .entry-meta .date {{ display: block; font-weight: 600; }}
+    .entry-meta .date {{ display: block; font-weight: 600; color: var(--text); }}
 
     .entry-title {{
       font-size: 11pt;
       font-weight: 700;
     }}
     .entry-title .label {{ color: var(--text); }}
-    .entry-title .detail {{ font-weight: 400; color: #444; }}
+    .entry-title .detail {{ font-weight: 400; color: var(--text-detail); }}
 
     .entry-degree {{
       font-size: 10pt;
@@ -361,10 +424,33 @@ def main():
       font-size: 10pt;
       font-family: var(--font);
     }}
-    .download-btn:hover {{ background: #003d70; }}
+    .download-btn:hover {{ background: var(--blue-hover); }}
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {{
+      .header h1 {{ font-size: 22pt; }}
+      .header .headline {{ font-size: 10pt; }}
+      .connections {{ gap: 10px; font-size: 9pt; }}
+      .connections svg {{ width: 11px; height: 11px; }}
+      .entry {{
+        grid-template-columns: 1fr;
+        gap: 2px 0;
+      }}
+      .entry-meta {{
+        text-align: left;
+        margin-top: 2px;
+        white-space: normal;
+      }}
+      .section-title {{ font-size: 12pt; }}
+    }}
   </style>
 </head>
 <body>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0 .996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+</button>
 
 <div class="download-bar">
   <a class="download-btn" href="Ricardo_Leal_CV.pdf" download>Download PDF</a>
@@ -411,6 +497,26 @@ def main():
   </div>
 {extra_html}
 </div>
+
+<script>
+(function() {{
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) {{
+    root.setAttribute('data-theme', saved);
+  }} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {{
+    root.setAttribute('data-theme', 'dark');
+  }}
+}})();
+
+function toggleTheme() {{
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+}}
+</script>
 
 </body>
 </html>"""
