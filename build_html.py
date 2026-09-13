@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate index.html from Ricardo_CV.yaml matching the PDF styling."""
 
+import re
 import sys
 from pathlib import Path
 from ruamel.yaml import YAML
@@ -17,10 +18,18 @@ def escape(text: str) -> str:
     )
 
 
+def md_inline(text: str) -> str:
+    """Convert basic Markdown inline: **bold** -> <strong>, *italic* -> <em>."""
+    text = escape(text)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
+    return text
+
+
 def render_highlights(items):
     if not items:
         return ""
-    lis = "\n".join(f"          <li>{escape(h)}</li>" for h in items)
+    lis = "\n".join(f"          <li>{md_inline(h)}</li>" for h in items)
     return f"        <ul class=\"highlights\">\n{lis}\n        </ul>"
 
 
