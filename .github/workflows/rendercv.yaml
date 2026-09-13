@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/render_cv.yaml'
+      - 'build_html.py'
+      - '.github/workflows/rendercv.yaml'
   workflow_call:
 
 permissions:
