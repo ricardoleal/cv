@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+# Edit this file with your own CV data, then push to deploy.
+cv:
+  name: Your Name
+  headline: Your Job Title
+  location: City, Country
+  email: you@example.com
+  phone:
+  social_networks:
+    - network: LinkedIn
+      username: your-linkedin
+    - network: GitHub
+      username: your-github
+  sections:
+    Career Profile:
+      - Write a brief summary of your professional background here.
+    education:
+      - institution: University Name
+        area: Field of Study
+        degree: Degree Type
+        location: City, Country
+        start_date: 2015
+        end_date: 2019
+        highlights:
+          - Key achievement or note
+    experience:
+      - company: Company Name
+        position: Job Title
+        location: City
+        start_date: 2021-01
+        end_date: present
+        highlights:
+          - What you accomplished
+          - "**Stack:** Tech1, Tech2, Tech3"
+    Key Skills:
+      - Category:
+        - Skill 1
+        - Skill 2
+    Interests:
+      - Interest 1
+      - Interest 2
