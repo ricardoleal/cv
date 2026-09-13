@@ -29,12 +29,8 @@ jobs:
           pip install -r requirements.txt
       - name: RenderCV
         run: |
-          cv_file=$(find src -maxdepth 1 -type f -name "*_CV.yaml" | head -n 1)
-          if [ -z "$cv_file" ]; then
-            echo "No RenderCV file found!"
-            exit 1
-          fi
-          rendercv render "$cv_file"
+          rendercv render src/render_cv.yaml
+          cp src/rendercv_output/*.pdf ./cv.pdf
       - name: Generate HTML
         run: |
           python3 build_html.py
