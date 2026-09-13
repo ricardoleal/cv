@@ -274,10 +274,9 @@
 
     /* Download bar */
     .download-bar {
-      text-align: right;
-      padding: 16px 56px;
-      max-width: 800px;
-      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 0 16px 0;
     }
     .download-btn {
       display: inline-flex;
@@ -304,7 +303,6 @@
     /* Responsive */
     @media (max-width: 768px) {
       .page { padding: 32px 24px; }
-      .download-bar { padding: 14px 24px; }
       .theme-toggle { top: 12px; right: 12px; width: 50px; height: 26px; }
       .toggle-track { width: 20px; height: 20px; }
       .toggle-track svg { width: 10px; height: 10px; }
@@ -350,14 +348,14 @@
   <svg class="icon-moon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
 </button>
 
-<div class="download-bar">
-  <a class="download-btn" href="Ricardo_Leal_CV.pdf" download>
-    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-    Download PDF
-  </a>
-</div>
-
 <div class="page">
+  <div class="download-bar">
+    <a class="download-btn" href="Ricardo_Leal_CV.pdf" download>
+      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Download PDF
+    </a>
+  </div>
+
   <div class="header">
     <h1>Ricardo Leal</h1>
     <div class="headline">Site Reliability Engineer</div>
