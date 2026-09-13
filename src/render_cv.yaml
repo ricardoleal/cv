@@ -12,7 +12,7 @@ cv:
       username: ricardoleal
   sections:
     Career Profile:
-      - Cloud Engineer with more than 10 years of experience. Strong background on System Administration, worked both in On-prem/Cloud infrastructures across internal and external clients. Currently working as Lead DevOps / Platform Engineer. Opensource advocate.
+      - Cloud Engineer with more than 10 years of experience. Strong background on System Administration, worked both in On-prem/Cloud infrastructures across internal and external clients. Currently working as Lead DevOps / Platform Engineer. Open-source advocate.
     education:
       - institution: Polytechnic Institute of Porto
         area: Informatics Engineering
@@ -37,7 +37,7 @@ cv:
         start_date: 2023-08
         end_date: present
         highlights:
-          - Led the migration from Click-ops to Git-ops
+          - Led the migration from Click-ops to Git-ops, reducing deployment time by 60%
           - Developed and maintained infrastructure as code, keeping it DRY (Don't Repeat Yourself) as much as possible
           - Migrating platforms for Machine Learning and Data transformation to Kubernetes
           - Implementing Database as a Service (DBaaS) in Kubernetes
@@ -49,7 +49,7 @@ cv:
         start_date: 2021-01
         end_date: 2023-01
         highlights:
-          - Developing and maintaining IAC code/modules/providers to manage cloud infrastructure
+          - Developing and maintaining IaC code/modules/providers to manage cloud infrastructure for 100+ microservices
           - Focus on the observability stack, providing tools and mechanisms to other teams
           - Led investigation of new implementations into AWS / MongodbAtlas / Grafana
           - "**Stack:** AWS, Terraform, Vault, Consul, Ansible, Atlantis, Prometheus, Grafana, K8s"
@@ -59,8 +59,8 @@ cv:
         start_date: 2020-01
         end_date: 2021-01
         highlights:
-          - Infrastructure architect and team leader, managing 3 datacenters and 2 IaaS sites
-          - Migration from Virtual Environment to IaaS and migrate micro services to containers
+          - Infrastructure architect and team leader, managing 3 data centers and 2 IaaS sites
+          - Migration from Virtual Environment to IaaS and migrate microservices to containers
           - Led Automation for infrastructure deployment and its lifecycle
           - Network administration (Core switch/Firewall/Ipsec)
           - "**Stack:** Ansible, RHEV/Ovirt, Rundeck, AWX, Vmware(IaaS), GCP"
@@ -70,13 +70,13 @@ cv:
         start_date: 2018-01
         end_date: 2020-01
         highlights:
-          - Lead Sysadmin on Windows and Linux platforms
+          - Led Sysadmin on Windows and Linux platforms
           - Cluster virtualization with VMware
           - Windows Server with Active Directory
           - Support for SQL servers
           - Disaster recovery with Veeam/Storagecraft
           - Responsible for deployment of network solutions, such as core network, firewall
-          - Orchestration and scripting evangelist, working mostly with Powershell and bash
+          - Orchestration and scripting evangelist, working mostly with PowerShell and bash
           - Developed IaC tools to automate everything possible
       - company: Cheaptrade
         position: Solution / Maintenance Technician
@@ -99,7 +99,7 @@ cv:
         end_date: 2009-01
         highlights:
           - Help Desk
-          - Small server solutions (Linux Based - Storage/PDC)
+          - Small server solutions (Linux-based - Storage/PDC)
           - Webhosting
           - ERP Solutions
       - company: Megatronica
