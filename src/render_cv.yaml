@@ -46,8 +46,8 @@ cv:
       - company: Talkdesk
         position: Site Reliability Engineer
         location: Porto
-        start_date: 2021-01
-        end_date: 2023-01
+        start_date: 2021-11
+        end_date: 2023-08
         highlights:
           - Developing and maintaining IaC code/modules/providers to manage cloud infrastructure for 100+ microservices
           - Focus on the observability stack, providing tools and mechanisms to other teams
@@ -56,8 +56,8 @@ cv:
       - company: Byside
         position: Senior System Administrator
         location: Porto
-        start_date: 2020-01
-        end_date: 2021-01
+        start_date: 2020-11
+        end_date: 2021-11
         highlights:
           - Infrastructure architect and team leader, managing 3 data centers and 2 IaaS sites
           - Migration from Virtual Environment to IaaS and migrate microservices to containers
@@ -67,8 +67,8 @@ cv:
       - company: Vimaponto
         position: System Administration Specialist
         location: Guimaraes
-        start_date: 2018-01
-        end_date: 2020-01
+        start_date: 2018-06
+        end_date: 2020-11
         highlights:
           - Led Sysadmin on Windows and Linux platforms
           - Cluster virtualization with VMware
@@ -81,8 +81,8 @@ cv:
       - company: Cheaptrade
         position: Solution / Maintenance Technician
         location: Felgueiras
-        start_date: 2009-01
-        end_date: 2018-01
+        start_date: 2009-04
+        end_date: 2018-06
         highlights:
           - Support ERP Clients
           - Server solutions for ERP
@@ -95,8 +95,8 @@ cv:
       - company: RMLTECH
         position: Self Employed
         location: Amarante
-        start_date: 2007-01
-        end_date: 2009-01
+        start_date: 2007-09
+        end_date: 2009-04
         highlights:
           - Help Desk
           - Small server solutions (Linux-based - Storage/PDC)
@@ -106,7 +106,7 @@ cv:
         position: IT Technician
         location: Braga
         start_date: 2005-01
-        end_date: 2006-01
+        end_date: 2006-12
         highlights:
           - Maintenance of Computers
           - Helpdesk
