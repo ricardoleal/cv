@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ricardo Leal - CV</title>
+  <title>Your Name - CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -335,6 +335,28 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition: none !important; }
     }
+
+    /* Print toast */
+    #print-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 10pt;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 100;
+    }
+    #print-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -353,7 +375,7 @@
   </div>
 
   <div class="header">
-    <h1>Ricardo Leal</h1>
+    <h1>Your Name</h1>
     <div class="headline">Site Reliability Engineer</div>
     <div class="connections">
       <a href="mailto:cv@ricardoleal.me">
@@ -572,7 +594,19 @@ function toggleTheme() {
   root.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
 }
+
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+    e.preventDefault();
+    window.open('cv.pdf', '_blank');
+    var t = document.getElementById('print-toast');
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2000);
+  }
+});
 </script>
+
+<div id="print-toast">Opening PDF for printing...</div>
 
 </body>
 </html>

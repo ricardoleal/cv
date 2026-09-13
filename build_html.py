@@ -531,6 +531,28 @@ def main():
     @media (prefers-reduced-motion: reduce) {{
       *, *::before, *::after {{ transition: none !important; }}
     }}
+
+    /* Print toast */
+    #print-toast {{
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 10pt;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 100;
+    }}
+    #print-toast.show {{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }}
   </style>
 </head>
 <body>
@@ -607,7 +629,19 @@ function toggleTheme() {{
   root.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
 }}
+
+document.addEventListener('keydown', function(e) {{
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') {{
+    e.preventDefault();
+    window.open('cv.pdf', '_blank');
+    var t = document.getElementById('print-toast');
+    t.classList.add('show');
+    setTimeout(function() {{ t.classList.remove('show'); }}, 2000);
+  }}
+}});
 </script>
+
+<div id="print-toast">Opening PDF for printing...</div>
 
 </body>
 </html>"""
