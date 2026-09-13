@@ -266,7 +266,7 @@ def main():
       max-width: 800px;
       margin: 0 auto;
       background: var(--page-bg);
-      padding: 48px 56px;
+      padding: 24px 56px 48px;
       box-shadow: var(--shadow);
     }}
 
@@ -323,8 +323,8 @@ def main():
     /* Header */
     .header {{
       text-align: center;
-      margin-bottom: 28px;
-      padding-bottom: 24px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border-light);
     }}
     .header h1 {{
@@ -468,12 +468,12 @@ def main():
     /* Download bar */
     .download-bar {{
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       gap: 8px;
-      padding: 0 0 8px 0;
+      padding: 0 0 12px 0;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }}
     .download-btn, .github-btn {{
       display: inline-flex;
