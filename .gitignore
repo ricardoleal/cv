@@ -1,0 +1,4 @@
+__pycache__/
+rendercv_output/
+*.typ
+.venv/
