@@ -4,3 +4,4 @@ output/
 *.typ
 .venv/
 .DS_Store
+src/.DS_Store
